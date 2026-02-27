@@ -3,11 +3,6 @@
 import Foundation
 import PackageDescription
 
-var sources = ["src/parser.c"]
-if FileManager.default.fileExists(atPath: "src/scanner.c") {
-    sources.append("src/scanner.c")
-}
-
 let package = Package(
     name: "TreeSitterYAML",
     products: [
@@ -21,7 +16,13 @@ let package = Package(
             name: "TreeSitterYAML",
             dependencies: [],
             path: ".",
-            sources: sources,
+            sources: [
+                "src/parser.c",
+                "src/scanner.c",
+                "src/schema.core.c",
+                "src/schema.json.c",
+                "src/schema.legacy.c"
+            ],
             resources: [
                 .copy("queries")
             ],
